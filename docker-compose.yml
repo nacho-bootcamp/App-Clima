@@ -2,23 +2,22 @@ version: "3.9"
 
 services:
   java-app:
-   container_name: java-app
-   image: prueba-tecnica
-  build: .
-  ports:
-   -8080:8080
-  enviroment:
-    - DB_URL=jdbc:mysql://localhost:3306/clima?useSSL=false&serverTimezone=UTC
-    - DB_USERNAME=root
-    - DB_PASSWORD=admin123456789
-    - DB_PLATFORM=org.hibernate.dialect.MySQL8Dialect
-  depends_on:
-    - java-db
- java-db:
-    container_name: java-db
-    image:  
-    
+    container_name: java-app
+    image: prueba-tecnica
+    build: .
     ports:
-      - 3306:3306
-    enviroment:
-       
+      - 8080:8080
+    environment:
+      - DB_URL=jdbc:mysql://java-db:3306/clima?useSSL=false&serverTimezone=UTC
+      - DB_USERNAME=root
+      - DB_PASSWORD=admin123456789
+    depends_on:
+      - java-db
+
+  java-db:
+    container_name: java-db
+    image: mysql:latest
+    ports:
+      - 3307:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=admin123456789
