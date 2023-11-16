@@ -1,7 +1,8 @@
 package dev.cardozo.bootcampPruebaTecnica.dto;
 
-import java.time.LocalDateTime;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -9,14 +10,32 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ForecastDto {
+  @JsonProperty("list")
   private List<ForecastEntry> entries;
 
   @Getter
   @Setter
   public static class ForecastEntry {
-    private LocalDateTime timestamp;
-    private String temperature;
-    private String description;
+    @JsonProperty("dt_txt")
+    private String timestamp;
 
+    @JsonProperty("main")
+    private Main main;
+
+    @JsonProperty("weather")
+    private List<Weather> weather;
+  }
+
+  @Getter
+  @Setter
+  public static class Main {
+    @JsonProperty("temp")
+    private double temperature;
+  }
+
+  @Getter
+  @Setter
+  public static class Weather {
+    private String description;
   }
 }
