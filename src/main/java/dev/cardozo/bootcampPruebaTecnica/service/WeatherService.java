@@ -45,6 +45,11 @@ public class WeatherService {
   public ForecastDto getWeatherForecastDto(String cityName) {
     String apiUrl = weatherApiUrl + "/forecast?q=" + cityName + "&appid=" + apiKey;
     ForecastDto forecastDto = callWeatherApi(apiUrl, ForecastDto.class);
+
+    if (forecastDto != null && forecastDto.getEntries() != null && forecastDto.getEntries().size() > 5) {
+      forecastDto.setEntries(forecastDto.getEntries().subList(0, 5));
+    }
+
     return forecastDto;
   }
 
