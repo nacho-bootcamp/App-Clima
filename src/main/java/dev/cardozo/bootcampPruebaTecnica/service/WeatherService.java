@@ -44,16 +44,12 @@ public class WeatherService {
 
   public ForecastDto getWeatherForecastDto(String cityName) {
     String apiUrl = weatherApiUrl + "/forecast?q=" + cityName + "&appid=" + apiKey;
-    System.out.println(apiUrl);
     ForecastDto forecastDto = callWeatherApi(apiUrl, ForecastDto.class);
-    System.out.println(forecastDto);
     return forecastDto;
   }
 
-  public AirPollutionDto getAirPollutionData(String cityName) {
-    System.out.println("estoy en Air");
-    String apiUrl = weatherApiUrl + "/air_pollution?q=" + cityName + "&appid=" + apiKey;
-    System.out.println(apiUrl);
+  public AirPollutionDto getAirPollutionData(double latitude, double longitude) {
+    String apiUrl = weatherApiUrl + "/air_pollution?lat=" + latitude + "&lon=" + longitude + "&appid=" + apiKey;
     AirPollutionDto airPollutionDto = callWeatherApi(apiUrl, AirPollutionDto.class);
     return airPollutionDto;
   }
@@ -63,5 +59,3 @@ public class WeatherService {
     return restTemplate.getForObject(apiUrl, responseType);
   }
 }
-// https://api.openweathermap.org/data/2.5/forescast?q=London&appid=5baa0baa0ba4f34fb33e08b011630046
-// https://api.openweathermap.org/data/2.5/forecast?q=London&appid=5baa0baa0ba4f34fb33e08b011630046

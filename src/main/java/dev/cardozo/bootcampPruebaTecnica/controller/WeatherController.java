@@ -59,7 +59,8 @@ public class WeatherController {
 
   @GetMapping("/air-pollution")
   public ResponseEntity<AirPollutionDto> getAirPollutionData(
-      @RequestParam String cityName,
+      @RequestParam double latitude,
+      @RequestParam double longitude,
       @AuthenticationPrincipal UserDetails userDetails) {
     // Obtiene el usuario autenticado
     User user = ((User) userDetails);
@@ -68,7 +69,7 @@ public class WeatherController {
     LocalDateTime requestTimestamp = LocalDateTime.now();
     System.out.println(requestTimestamp);
     // Obtiene los datos de contaminación del aire desde el servicio
-    AirPollutionDto airPollutionDto = weatherService.getAirPollutionData(cityName);
+    AirPollutionDto airPollutionDto = weatherService.getAirPollutionData(latitude, longitude);
 
     // Devuelve la respuesta al cliente
     return ResponseEntity.ok(airPollutionDto);
