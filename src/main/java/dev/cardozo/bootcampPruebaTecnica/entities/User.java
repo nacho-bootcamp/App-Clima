@@ -61,4 +61,7 @@ public class User implements UserDetails {
     return true;
   }
 
+  @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+  private List<WeatherRequest> weatherRequests;
+
 }
