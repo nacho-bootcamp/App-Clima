@@ -45,14 +45,14 @@ public class WeatherController {
       @AuthenticationPrincipal UserDetails userDetails) {
     // Obtiene el usuario autenticado
     User user = ((User) userDetails);
-    System.out.println(user);
+    System.out.println(user.getEmail() + " Soy el forest");
 
     // Captura la información de la solicitud
     LocalDateTime requestTimestamp = LocalDateTime.now();
-    System.out.println(requestTimestamp);
+    System.out.println(requestTimestamp + " soy el timestamp");
     // Obtiene el pronóstico del tiempo desde el servicio
     ForecastDto forecastDto = weatherService.getWeatherForecastDto(cityName);
-
+    System.out.println(forecastDto + " llegue ");
     // Devuelve la respuesta al cliente
     return ResponseEntity.ok(forecastDto);
   }
@@ -64,10 +64,10 @@ public class WeatherController {
       @AuthenticationPrincipal UserDetails userDetails) {
     // Obtiene el usuario autenticado
     User user = ((User) userDetails);
-    System.out.println(user);
+    System.out.println(user + " soy air");
     // Captura la información de la solicitud
     LocalDateTime requestTimestamp = LocalDateTime.now();
-    System.out.println(requestTimestamp);
+    System.out.println(requestTimestamp + " soy air de abajo");
     // Obtiene los datos de contaminación del aire desde el servicio
     AirPollutionDto airPollutionDto = weatherService.getAirPollutionData(latitude, longitude);
 

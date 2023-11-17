@@ -8,16 +8,30 @@ services:
     ports:
       - 8080:8080
     environment:
-      - DB_URL=jdbc:mysql://java-db:3306/clima?useSSL=false&serverTimezone=UTC
-      - DB_USERNAME=root
-      - DB_PASSWORD=admin123456789
+      - DB_URL=jdbc:postgresql://java-db:5432/postgres
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=postgres
+
+      - SECRET_KEY=3cfa76ef14937c1c0ea519f8fc057a80fcd04a7420f8e8bcd0a7567c272e007b
+      - SECRET_TIME=2000000
+
+      - API_URL=https://api.openweathermap.org/data/2.5
+      - API_KEY=5baa0baa0ba4f34fb33e08b011630046
     depends_on:
       - java-db
+      - redis
 
   java-db:
     container_name: java-db
-    image: mysql:latest
+    image: postgres:12
     ports:
-      - 3307:3306
+      - 5432:5432
     environment:
-      - MYSQL_ROOT_PASSWORD=admin123456789
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+
+  redis:
+    image: redis:latest
+    ports:
+      - 6379:6379

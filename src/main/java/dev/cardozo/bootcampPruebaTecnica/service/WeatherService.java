@@ -44,19 +44,17 @@ public class WeatherService {
     return weatherDto;
   }
 
-  @Cacheable("getWeatherForecastDto")
   public ForecastDto getWeatherForecastDto(String cityName) {
+
     String apiUrl = weatherApiUrl + "/forecast?q=" + cityName + "&appid=" + apiKey;
     ForecastDto forecastDto = callWeatherApi(apiUrl, ForecastDto.class);
 
     if (forecastDto != null && forecastDto.getEntries() != null && forecastDto.getEntries().size() > 5) {
       forecastDto.setEntries(forecastDto.getEntries().subList(0, 5));
     }
-
     return forecastDto;
   }
 
-  @Cacheable("getAirPollutionData")
   public AirPollutionDto getAirPollutionData(double latitude, double longitude) {
     String apiUrl = weatherApiUrl + "/air_pollution?lat=" + latitude + "&lon=" + longitude + "&appid=" + apiKey;
     AirPollutionDto airPollutionDto = callWeatherApi(apiUrl, AirPollutionDto.class);

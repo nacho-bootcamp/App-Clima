@@ -1,7 +1,5 @@
 package dev.cardozo.bootcampPruebaTecnica.dto;
 
-import java.io.Serializable;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,7 +9,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class LoginUserDto implements Serializable {
+public class LoginUserDto {
   private String email;
   private String password;
 }

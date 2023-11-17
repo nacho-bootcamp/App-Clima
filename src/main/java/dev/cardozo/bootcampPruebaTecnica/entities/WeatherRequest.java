@@ -2,6 +2,8 @@ package dev.cardozo.bootcampPruebaTecnica.entities;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,6 +27,7 @@ public class WeatherRequest {
 
   private LocalDateTime requestTimestamp;
 
+  @JsonBackReference
   @ManyToOne
   @JoinColumn(name = "user_id")
   private User user;

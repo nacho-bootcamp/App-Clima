@@ -25,8 +25,6 @@ public class UserController {
   public ResponseEntity<User> authenticatedUser() {
 
     User currentUser = userService.authenticatedUser();
-    System.out.println("Entre");
-    System.out.println(currentUser);
     return ResponseEntity.ok(currentUser);
   }
 
