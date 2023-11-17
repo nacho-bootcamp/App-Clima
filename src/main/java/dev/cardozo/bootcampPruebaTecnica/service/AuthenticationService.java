@@ -29,13 +29,11 @@ public class AuthenticationService {
     user.setLastName(registerUser.getLastName());
     user.setEmail(registerUser.getEmail());
     user.setPassword(passwordEncoder.encode(registerUser.getPassword()));
-    System.out.println("Usuario Creado");
 
     return userRepository.save(user);
   }
 
   public User signin(LoginUserDto loginUser) {
-    System.out.println("Entre al signin");
     try {
       authenticationManager.authenticate(
           new UsernamePasswordAuthenticationToken(

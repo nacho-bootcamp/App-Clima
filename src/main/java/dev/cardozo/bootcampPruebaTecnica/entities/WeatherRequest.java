@@ -13,7 +13,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "wheather")
+@Table(name = "weather")
 @Getter
 @Setter
 public class WeatherRequest {

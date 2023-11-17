@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -36,12 +37,14 @@ public class WeatherService {
     return getWeatherData(cityName);
   }
 
+  @Cacheable("getWeatherData")
   public WeatherDto getWeatherData(String cityName) {
     String apiUrl = weatherApiUrl + "/weather?q=" + cityName + "&appid=" + apiKey;
     WeatherDto weatherDto = callWeatherApi(apiUrl, WeatherDto.class);
     return weatherDto;
   }
 
+  @Cacheable("getWeatherForecastDto")
   public ForecastDto getWeatherForecastDto(String cityName) {
     String apiUrl = weatherApiUrl + "/forecast?q=" + cityName + "&appid=" + apiKey;
     ForecastDto forecastDto = callWeatherApi(apiUrl, ForecastDto.class);
@@ -53,6 +56,7 @@ public class WeatherService {
     return forecastDto;
   }
 
+  @Cacheable("getAirPollutionData")
   public AirPollutionDto getAirPollutionData(double latitude, double longitude) {
     String apiUrl = weatherApiUrl + "/air_pollution?lat=" + latitude + "&lon=" + longitude + "&appid=" + apiKey;
     AirPollutionDto airPollutionDto = callWeatherApi(apiUrl, AirPollutionDto.class);

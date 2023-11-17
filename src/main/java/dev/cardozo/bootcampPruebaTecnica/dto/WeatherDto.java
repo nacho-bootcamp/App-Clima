@@ -1,15 +1,20 @@
 package dev.cardozo.bootcampPruebaTecnica.dto;
 
+import java.io.Serializable;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class WeatherDto {
+@NoArgsConstructor
+@AllArgsConstructor
+public class WeatherDto implements Serializable {
   @JsonProperty("name")
   private String city;
 
@@ -36,6 +41,8 @@ public class WeatherDto {
 
   @Getter
   @Setter
+  @NoArgsConstructor
+  @AllArgsConstructor
   public static class Main {
     @JsonProperty("temp")
     private double temperature;
@@ -46,6 +53,8 @@ public class WeatherDto {
 
   @Getter
   @Setter
+  @NoArgsConstructor
+  @AllArgsConstructor
   public static class Wind {
     @JsonProperty("speed")
     private double speed;
@@ -53,6 +62,8 @@ public class WeatherDto {
 
   @Getter
   @Setter
+  @NoArgsConstructor
+  @AllArgsConstructor
   public static class WeatherDescription {
     private String description;
   }

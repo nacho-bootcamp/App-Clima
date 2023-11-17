@@ -1,15 +1,20 @@
 package dev.cardozo.bootcampPruebaTecnica.dto;
 
+import java.io.Serializable;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class ForecastDto {
+@NoArgsConstructor
+@AllArgsConstructor
+public class ForecastDto implements Serializable {
   @JsonProperty("list")
   private List<ForecastEntry> entries;
 

@@ -19,13 +19,14 @@ public class UserService {
 
   public User authenticatedUser() {
     Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    System.out.println("Estoy en service");
     return (User) authentication.getPrincipal();
   }
 
   public List<User> allUsers() {
     List<User> users = new ArrayList<>();
     userRepository.findAll().forEach(users::add);
-
+    System.out.println("Estoy en service");
     return users;
   }
 }
