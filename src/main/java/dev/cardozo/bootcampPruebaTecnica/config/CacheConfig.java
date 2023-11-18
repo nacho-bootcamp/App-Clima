@@ -17,7 +17,7 @@ public class CacheConfig {
   @Bean
   public RedisCacheConfiguration cacheConfiguration() {
     return RedisCacheConfiguration.defaultCacheConfig()
-        .entryTtl(Duration.ofSeconds(10))
+        .entryTtl(Duration.ofMinutes(10))
         .disableCachingNullValues()
         .serializeValuesWith(SerializationPair.fromSerializer(new GenericJackson2JsonRedisSerializer()));
   }
@@ -26,8 +26,8 @@ public class CacheConfig {
   public RedisCacheManagerBuilderCustomizer redisCacheManagerBuilderCustomizer() {
     return (builder) -> builder
         .withCacheConfiguration("itemCache",
-            RedisCacheConfiguration.defaultCacheConfig().entryTtl(Duration.ofSeconds(10)))
+            RedisCacheConfiguration.defaultCacheConfig().entryTtl(Duration.ofMinutes(10)))
         .withCacheConfiguration("customerCache",
-            RedisCacheConfiguration.defaultCacheConfig().entryTtl(Duration.ofSeconds(10)));
+            RedisCacheConfiguration.defaultCacheConfig().entryTtl(Duration.ofMinutes(10)));
   }
 }
