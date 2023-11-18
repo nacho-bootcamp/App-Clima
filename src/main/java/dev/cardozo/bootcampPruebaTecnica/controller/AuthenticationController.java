@@ -13,6 +13,7 @@ import dev.cardozo.bootcampPruebaTecnica.dto.RegisterUserDto;
 import dev.cardozo.bootcampPruebaTecnica.entities.User;
 import dev.cardozo.bootcampPruebaTecnica.service.AuthenticationService;
 import dev.cardozo.bootcampPruebaTecnica.service.JwtService;
+import io.swagger.v3.oas.annotations.Operation;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -23,6 +24,7 @@ public class AuthenticationController {
   @Autowired
   private JwtService jwtService;
 
+  @Operation(summary = "Register a new User", description = "This operation allows registering a new user in the system")
   @PostMapping("/signup")
   public ResponseEntity<User> register(@RequestBody RegisterUserDto registerUserDto) {
     User registeredUser = authenticationService.signup(registerUserDto);
@@ -30,6 +32,7 @@ public class AuthenticationController {
     return ResponseEntity.ok(registeredUser);
   }
 
+  @Operation(summary = "Authenticate user and generate JWT token", description = "Authenticates an existing user in the system and generates a JWT token for subsequent authentication")
   @PostMapping("/signin")
   public ResponseEntity<LoginResponseDto> authenticate(@RequestBody LoginUserDto loginUserDto) {
 
@@ -40,7 +43,6 @@ public class AuthenticationController {
     loginResponse.setToken(jwtToken);
     loginResponse.setExpiresIn(jwtService.getExpirationTime());
 
-    System.out.println("Token Generado");
     return ResponseEntity.ok(loginResponse);
   }
 }

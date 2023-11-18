@@ -16,6 +16,7 @@ import dev.cardozo.bootcampPruebaTecnica.dto.ForecastDto;
 import dev.cardozo.bootcampPruebaTecnica.dto.WeatherDto;
 import dev.cardozo.bootcampPruebaTecnica.entities.User;
 import dev.cardozo.bootcampPruebaTecnica.service.WeatherService;
+import io.swagger.v3.oas.annotations.Operation;
 
 @RestController
 @RequestMapping("/api/weather")
@@ -24,54 +25,41 @@ public class WeatherController {
   @Autowired
   private WeatherService weatherService;
 
+  @Operation(summary = "Get Current Weather", description = "Retrieves the current weather information for a specified city.")
   @GetMapping("/current")
   public ResponseEntity<WeatherDto> getCurrenWeather(
       @RequestParam String cityName, @AuthenticationPrincipal UserDetails userDetails) {
     User user = ((User) userDetails);
-
-    // Captura la información de la solicitud
     LocalDateTime requestTimestamp = LocalDateTime.now();
-
-    // Guarda la solicitud en la base de datos
     WeatherDto weatherDto = weatherService.saveWeatherRequest(cityName, user, requestTimestamp);
-
-    // Devuelve la respuesta al cliente
     return ResponseEntity.ok(weatherDto);
   }
 
+  @Operation(summary = "Get Weather Forecast", description = "Retrieves the weather forecast for a specified city.")
   @GetMapping("/forecast")
   public ResponseEntity<ForecastDto> getWeatherForecast(
       @RequestParam String cityName,
       @AuthenticationPrincipal UserDetails userDetails) {
-    // Obtiene el usuario autenticado
     User user = ((User) userDetails);
-    System.out.println(user.getEmail() + " Soy el forest");
-
-    // Captura la información de la solicitud
+    System.out.println(user.getEmail());
     LocalDateTime requestTimestamp = LocalDateTime.now();
-    System.out.println(requestTimestamp + " soy el timestamp");
-    // Obtiene el pronóstico del tiempo desde el servicio
+    System.out.println(requestTimestamp);
     ForecastDto forecastDto = weatherService.getWeatherForecastDto(cityName);
-    System.out.println(forecastDto + " llegue ");
-    // Devuelve la respuesta al cliente
+
     return ResponseEntity.ok(forecastDto);
   }
 
+  @Operation(summary = "Get Air Pollution Data", description = "Retrieves air pollution data for a specified location.")
   @GetMapping("/air-pollution")
   public ResponseEntity<AirPollutionDto> getAirPollutionData(
       @RequestParam double latitude,
       @RequestParam double longitude,
       @AuthenticationPrincipal UserDetails userDetails) {
-    // Obtiene el usuario autenticado
     User user = ((User) userDetails);
-    System.out.println(user + " soy air");
-    // Captura la información de la solicitud
+    System.out.println(user);
     LocalDateTime requestTimestamp = LocalDateTime.now();
-    System.out.println(requestTimestamp + " soy air de abajo");
-    // Obtiene los datos de contaminación del aire desde el servicio
+    System.out.println(requestTimestamp);
     AirPollutionDto airPollutionDto = weatherService.getAirPollutionData(latitude, longitude);
-
-    // Devuelve la respuesta al cliente
     return ResponseEntity.ok(airPollutionDto);
   }
 }
