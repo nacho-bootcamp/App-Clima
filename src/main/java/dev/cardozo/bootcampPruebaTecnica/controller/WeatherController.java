@@ -13,13 +13,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import dev.cardozo.bootcampPruebaTecnica.Exceptions.RateLimitExceededException;
-import dev.cardozo.bootcampPruebaTecnica.Exceptions.UnauthorizedAccessException;
 import dev.cardozo.bootcampPruebaTecnica.config.RateLimitServiceConfig;
 import dev.cardozo.bootcampPruebaTecnica.dto.AirPollutionDto;
 import dev.cardozo.bootcampPruebaTecnica.dto.ForecastDto;
 import dev.cardozo.bootcampPruebaTecnica.dto.MensajeDto;
 import dev.cardozo.bootcampPruebaTecnica.dto.WeatherDto;
-import dev.cardozo.bootcampPruebaTecnica.entities.User;
+import dev.cardozo.bootcampPruebaTecnica.security.entities.User;
 import dev.cardozo.bootcampPruebaTecnica.service.WeatherService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -85,6 +84,7 @@ public class WeatherController {
     } catch (RateLimitExceededException e) {
       return ResponseEntity.status(HttpStatus.TOO_MANY_REQUESTS).body(new MensajeDto(e.getMessage()));
     } catch (Exception e) {
+      System.out.println(e);
       return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new MensajeDto("Error interno del servidor"));
     }
   }

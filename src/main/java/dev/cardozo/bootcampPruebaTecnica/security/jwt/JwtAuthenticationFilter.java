@@ -1,4 +1,4 @@
-package dev.cardozo.bootcampPruebaTecnica.config;
+package dev.cardozo.bootcampPruebaTecnica.security.jwt;
 
 import java.io.IOException;
 
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 
-import dev.cardozo.bootcampPruebaTecnica.service.JwtService;
+import dev.cardozo.bootcampPruebaTecnica.security.service.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

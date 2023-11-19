@@ -1,5 +1,6 @@
 package dev.cardozo.bootcampPruebaTecnica.dto;
 
+import java.io.Serializable;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -13,33 +14,84 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ForecastDto {
-  @JsonProperty("list")
-  private List<ForecastEntry> entries;
+public class ForecastDto implements Serializable {
+  private String cod;
+  private int message;
+  private int cnt;
+  private List<WeatherData> list;
 
   @Getter
   @Setter
-  public static class ForecastEntry {
-    @JsonProperty("dt_txt")
-    private String timestamp;
-
-    @JsonProperty("main")
+  @NoArgsConstructor
+  @AllArgsConstructor
+  public static class WeatherData implements Serializable {
+    private long dt;
     private Main main;
-
-    @JsonProperty("weather")
     private List<Weather> weather;
-  }
+    private Clouds clouds;
+    private Wind wind;
+    private int visibility;
+    private int pop;
+    private Sys sys;
+    @JsonProperty("dt_txt")
+    private String dtTxt;
 
-  @Getter
-  @Setter
-  public static class Main {
-    @JsonProperty("temp")
-    private double temperature;
-  }
+    @Getter
+    @Setter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class Main implements Serializable {
+      private double temp;
+      private double feelsLike;
+      @JsonProperty("temp_min")
+      private double tempMin;
+      @JsonProperty("temp_max")
+      private double tempMax;
+      private int pressure;
+      @JsonProperty("sea_level")
+      private int seaLevel;
+      @JsonProperty("grnd_level")
+      private int grndLevel;
+      private int humidity;
+      @JsonProperty("temp_kf")
+      private double tempKf;
+    }
 
-  @Getter
-  @Setter
-  public static class Weather {
-    private String description;
+    @Getter
+    @Setter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class Weather implements Serializable {
+      private int id;
+      private String main;
+      private String description;
+      private String icon;
+    }
+
+    @Getter
+    @Setter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class Clouds implements Serializable {
+      private int all;
+    }
+
+    @Getter
+    @Setter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class Wind implements Serializable {
+      private double speed;
+      private int deg;
+      private double gust;
+    }
+
+    @Getter
+    @Setter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class Sys implements Serializable {
+      private String pod;
+    }
   }
 }

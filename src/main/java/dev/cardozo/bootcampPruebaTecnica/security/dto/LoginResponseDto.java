@@ -1,4 +1,4 @@
-package dev.cardozo.bootcampPruebaTecnica.dto;
+package dev.cardozo.bootcampPruebaTecnica.security.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

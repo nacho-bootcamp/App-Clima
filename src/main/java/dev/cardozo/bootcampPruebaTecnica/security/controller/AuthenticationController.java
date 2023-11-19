@@ -1,4 +1,4 @@
-package dev.cardozo.bootcampPruebaTecnica.controller;
+package dev.cardozo.bootcampPruebaTecnica.security.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,14 +11,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import dev.cardozo.bootcampPruebaTecnica.dto.LoginResponseDto;
-import dev.cardozo.bootcampPruebaTecnica.dto.LoginUserDto;
 import dev.cardozo.bootcampPruebaTecnica.dto.MensajeDto;
-import dev.cardozo.bootcampPruebaTecnica.dto.RegisterUserDto;
-import dev.cardozo.bootcampPruebaTecnica.entities.User;
-import dev.cardozo.bootcampPruebaTecnica.service.AuthenticationService;
-import dev.cardozo.bootcampPruebaTecnica.service.JwtService;
-import dev.cardozo.bootcampPruebaTecnica.service.UserService;
+import dev.cardozo.bootcampPruebaTecnica.security.dto.LoginResponseDto;
+import dev.cardozo.bootcampPruebaTecnica.security.dto.LoginUserDto;
+import dev.cardozo.bootcampPruebaTecnica.security.dto.RegisterUserDto;
+import dev.cardozo.bootcampPruebaTecnica.security.entities.User;
+import dev.cardozo.bootcampPruebaTecnica.security.service.AuthenticationService;
+import dev.cardozo.bootcampPruebaTecnica.security.service.JwtService;
+import dev.cardozo.bootcampPruebaTecnica.security.service.UserService;
 import io.micrometer.common.util.StringUtils;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;

@@ -1,4 +1,4 @@
-package dev.cardozo.bootcampPruebaTecnica.service;
+package dev.cardozo.bootcampPruebaTecnica.security.service;
 
 import java.util.Optional;
 
@@ -8,8 +8,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import dev.cardozo.bootcampPruebaTecnica.entities.User;
-import dev.cardozo.bootcampPruebaTecnica.repositories.UserRepository;
+import dev.cardozo.bootcampPruebaTecnica.security.entities.User;
+import dev.cardozo.bootcampPruebaTecnica.security.repository.UserRepository;
 
 @Service
 public class AppUserDetailsService implements UserDetailsService {

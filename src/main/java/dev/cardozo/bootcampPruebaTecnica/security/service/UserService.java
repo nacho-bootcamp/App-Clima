@@ -1,4 +1,4 @@
-package dev.cardozo.bootcampPruebaTecnica.service;
+package dev.cardozo.bootcampPruebaTecnica.security.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,8 +8,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import dev.cardozo.bootcampPruebaTecnica.entities.User;
-import dev.cardozo.bootcampPruebaTecnica.repositories.UserRepository;
+import dev.cardozo.bootcampPruebaTecnica.security.entities.User;
+import dev.cardozo.bootcampPruebaTecnica.security.repository.UserRepository;
 
 @Service
 public class UserService {

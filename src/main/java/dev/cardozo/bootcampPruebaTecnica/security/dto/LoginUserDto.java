@@ -1,4 +1,4 @@
-package dev.cardozo.bootcampPruebaTecnica.dto;
+package dev.cardozo.bootcampPruebaTecnica.security.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,9 +9,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class RegisterUserDto {
+public class LoginUserDto {
   private String email;
   private String password;
-  private String name;
-  private String lastName;
 }

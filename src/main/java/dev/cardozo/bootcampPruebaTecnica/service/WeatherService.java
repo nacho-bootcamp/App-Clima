@@ -1,6 +1,8 @@
 package dev.cardozo.bootcampPruebaTecnica.service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,9 +18,9 @@ import dev.cardozo.bootcampPruebaTecnica.config.CacheConfig;
 import dev.cardozo.bootcampPruebaTecnica.dto.AirPollutionDto;
 import dev.cardozo.bootcampPruebaTecnica.dto.ForecastDto;
 import dev.cardozo.bootcampPruebaTecnica.dto.WeatherDto;
-import dev.cardozo.bootcampPruebaTecnica.entities.User;
 import dev.cardozo.bootcampPruebaTecnica.entities.WeatherRequest;
 import dev.cardozo.bootcampPruebaTecnica.repositories.WeatherRepository;
+import dev.cardozo.bootcampPruebaTecnica.security.entities.User;
 
 @Import({ CacheConfig.class })
 @ImportAutoConfiguration(classes = {
@@ -59,9 +61,14 @@ public class WeatherService {
     try {
       String apiUrl = weatherApiUrl + "/forecast?q=" + cityName + "&appid=" + apiKey;
       ForecastDto forecastDto = callWeatherApi(apiUrl, ForecastDto.class);
-      if (forecastDto != null && forecastDto.getEntries() != null && forecastDto.getEntries().size() > 5) {
-        forecastDto.setEntries(forecastDto.getEntries().subList(0, 5));
+      List<ForecastDto.WeatherData> limitedEntries = new ArrayList<>();
+      int limit = Math.min(forecastDto.getList().size(), 5);
+
+      for (int i = 0; i < limit; i++) {
+        limitedEntries.add(forecastDto.getList().get(i));
       }
+
+      forecastDto.setList(limitedEntries);
       return forecastDto;
     } catch (Exception e) {
       e.printStackTrace();

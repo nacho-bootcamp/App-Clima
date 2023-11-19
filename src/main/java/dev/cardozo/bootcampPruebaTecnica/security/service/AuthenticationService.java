@@ -1,4 +1,4 @@
-package dev.cardozo.bootcampPruebaTecnica.service;
+package dev.cardozo.bootcampPruebaTecnica.security.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -7,10 +7,10 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import dev.cardozo.bootcampPruebaTecnica.dto.LoginUserDto;
-import dev.cardozo.bootcampPruebaTecnica.dto.RegisterUserDto;
-import dev.cardozo.bootcampPruebaTecnica.entities.User;
-import dev.cardozo.bootcampPruebaTecnica.repositories.UserRepository;
+import dev.cardozo.bootcampPruebaTecnica.security.dto.LoginUserDto;
+import dev.cardozo.bootcampPruebaTecnica.security.dto.RegisterUserDto;
+import dev.cardozo.bootcampPruebaTecnica.security.entities.User;
+import dev.cardozo.bootcampPruebaTecnica.security.repository.UserRepository;
 
 @Service
 public class AuthenticationService {

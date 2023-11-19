@@ -1,4 +1,4 @@
-package dev.cardozo.bootcampPruebaTecnica.entities;
+package dev.cardozo.bootcampPruebaTecnica.security.entities;
 
 import java.util.Collection;
 import java.util.List;
@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import dev.cardozo.bootcampPruebaTecnica.entities.WeatherRequest;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

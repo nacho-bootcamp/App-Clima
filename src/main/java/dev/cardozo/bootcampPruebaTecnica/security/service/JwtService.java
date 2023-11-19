@@ -1,4 +1,4 @@
-package dev.cardozo.bootcampPruebaTecnica.service;
+package dev.cardozo.bootcampPruebaTecnica.security.service;
 
 import java.security.Key;
 import java.util.Date;

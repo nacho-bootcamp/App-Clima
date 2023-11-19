@@ -1,4 +1,4 @@
-package dev.cardozo.bootcampPruebaTecnica.config;
+package dev.cardozo.bootcampPruebaTecnica.security.jwt;
 
 import java.util.List;
 

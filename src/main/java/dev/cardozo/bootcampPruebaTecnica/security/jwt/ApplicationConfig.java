@@ -1,4 +1,4 @@
-package dev.cardozo.bootcampPruebaTecnica.config;
+package dev.cardozo.bootcampPruebaTecnica.security.jwt;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,7 +9,7 @@ import org.springframework.security.config.annotation.authentication.configurati
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import dev.cardozo.bootcampPruebaTecnica.service.AppUserDetailsService;
+import dev.cardozo.bootcampPruebaTecnica.security.service.AppUserDetailsService;
 
 @Configuration
 public class ApplicationConfig {
