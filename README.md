@@ -1,19 +1,22 @@
-# Project Name
+# Weather API - Technical Test for Backend Developer
 
-[Short description of your project]
+## Descripcion del proyecto
 
-## Table of Contents
+Este proyecto implementa una API de datos meteorologicos que utiliza [OpenWeatherMap](https://openweathermap.org/) para obtener informacion meteorologica actual y pronosticos para las ciudades especificadas.
 
-- [Overview](#overview)
-- [Features](#features)
-- [Getting Started](#getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
-  - [Configuration](#configuration)
-- [Usage](#usage)
-- [API Documentation](#api-documentation)
-- [Contributing](#contributing)
-- [License](#license)
+## Requisitos Previos
+
+### Asegurarse de tener instalado:
+
+- [Docker](https://www.docker.com/products/docker-desktop/)
+- [Java Development(JDK)](https://www.oracle.com/ar/java/technologies/downloads/)
+- [PostgreSQL](https://www.postgresql.org/download/)
+
+## Configuración
+
+### Configuración de la Base de Datos
+
+1. Configura la base de datos en el archivo `application.properties`.
 
 ## Overview
 

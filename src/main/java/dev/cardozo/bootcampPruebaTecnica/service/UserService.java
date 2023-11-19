@@ -22,6 +22,10 @@ public class UserService {
     return (User) authentication.getPrincipal();
   }
 
+  public boolean existsByEmail(String email) {
+    return userRepository.existsByEmail(email);
+  }
+
   public List<User> allUsers() {
     List<User> users = new ArrayList<>();
     userRepository.findAll().forEach(users::add);

@@ -46,4 +46,8 @@ public class AuthenticationService {
     return userRepository.findByEmail(loginUser.getEmail())
         .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
   }
+
+  public boolean checkPassword(String rawPassword, String encodedPassword) {
+    return passwordEncoder.matches(rawPassword, encodedPassword);
+  }
 }
