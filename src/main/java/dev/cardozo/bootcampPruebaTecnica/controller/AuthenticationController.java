@@ -52,7 +52,7 @@ public class AuthenticationController {
     }
     if (userService.existsByEmail(registerUserDto.getEmail())) {
       return new ResponseEntity<MensajeDto>(
-          new MensajeDto("El email " + registerUserDto.getEmail() + " ya se encuentra registrado"),
+          new MensajeDto("Esta cuenta ya se encuentra registrada"),
           HttpStatus.BAD_REQUEST);
     }
     if (registerUserDto.getPassword().length() < 4) {

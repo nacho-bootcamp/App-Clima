@@ -13,7 +13,7 @@ import io.github.bucket4j.Refill;
 @Configuration
 public class RateLimitServiceConfig {
 
-  private static final int MAX_REQUESTS_PER_HOUR = 100;
+  private static final int MAX_REQUESTS_PER_HOUR = 2;
 
   @Bean
   public Bucket rateLimitBucket() {
