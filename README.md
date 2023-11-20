@@ -140,6 +140,20 @@ Este proyecto constituye una API que proporciona datos meteorológicos mediante 
     ]
 ```
 
+## Documentación y Exploración con Swagger
+
+Esta API está documentada y se puede explorar fácilmente utilizando Swagger, una herramienta de visualización interactiva para APIs. Swagger proporciona una interfaz gráfica que simplifica la comprensión de los endpoints disponibles, sus parámetros y las respuestas esperadas.
+
+## Acceder a Swagger
+
+- Iniciar la Aplicación: Asegúrate de que la aplicación esté en ejecución según las instrucciones proporcionadas anteriormente.
+
+- Acceder a Swagger UI: Abre tu navegador web y navega a la siguiente URL: http://localhost:8080/swagger-ui.html.
+
+## Interacción con Swagger
+
+Una vez en Swagger UI, podrás explorar y probar los diferentes endpoints de la API de manera interactiva. Esto incluye la ejecución de solicitudes, visualización de respuestas y comprensión detallada de los parámetros requeridos.
+
 ## Pasos para Levantar el Proyecto
 
 **Sigue estos pasos para levantar la aplicacion Sprint Boot y ejecutarla:**
