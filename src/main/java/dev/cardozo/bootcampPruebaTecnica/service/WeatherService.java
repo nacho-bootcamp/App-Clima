@@ -1,8 +1,12 @@
 package dev.cardozo.bootcampPruebaTecnica.service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -61,14 +65,23 @@ public class WeatherService {
     try {
       String apiUrl = weatherApiUrl + "/forecast?q=" + cityName + "&appid=" + apiKey;
       ForecastDto forecastDto = callWeatherApi(apiUrl, ForecastDto.class);
-      List<ForecastDto.WeatherData> limitedEntries = new ArrayList<>();
-      int limit = Math.min(forecastDto.getList().size(), 5);
+      if (forecastDto != null && !forecastDto.getList().isEmpty()) {
+        List<ForecastDto.WeatherData> entries = new ArrayList<>();
+        Set<LocalDate> uniqueDates = new HashSet<>();
 
-      for (int i = 0; i < limit; i++) {
-        limitedEntries.add(forecastDto.getList().get(i));
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+        for (ForecastDto.WeatherData weatherData : forecastDto.getList()) {
+          LocalDateTime dateTime = LocalDateTime.parse(weatherData.getDtTxt(), formatter);
+          LocalDate date = dateTime.toLocalDate();
+
+          if (uniqueDates.add(date)) {
+            entries.add(weatherData);
+          }
+        }
+
+        forecastDto.setList(entries);
       }
-
-      forecastDto.setList(limitedEntries);
       return forecastDto;
     } catch (Exception e) {
       e.printStackTrace();

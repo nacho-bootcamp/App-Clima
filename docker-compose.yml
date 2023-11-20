@@ -20,6 +20,9 @@ services:
     depends_on:
       - java-db
       - redis
+    links:
+      - java-db
+      - redis
 
   java-db:
     container_name: java-db
