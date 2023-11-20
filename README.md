@@ -2,7 +2,13 @@
 
 ## Descripcion del proyecto
 
-Este proyecto implementa una API de datos meteorologicos que utiliza [OpenWeatherMap](https://openweathermap.org/) para obtener informacion meteorologica actual y pronosticos para las ciudades especificadas.
+Este proyecto constituye una API que proporciona datos meteorológicos mediante la integración con [OpenWeatherMap](https://openweathermap.org/). Su funcionalidad incluye la obtención de información meteorológica en tiempo real y pronósticos para ciudades específicas. Destaca por las siguientes características:
+
+- Cache de Respuestas: Implementa un sistema de caché para optimizar el rendimiento, permitiendo respuestas más rápidas al almacenar y recuperar datos previamente solicitados. Esto mejora la experiencia del usuario al reducir los tiempos de espera para consultas recurrentes.
+
+- Limitación de Peticiones: Se ha establecido un límite de 50 peticiones por hora para gestionar el acceso y garantizar un uso responsable de la API. Esta medida contribuye a mantener la estabilidad del servicio y prevenir posibles abusos.
+
+- Integración con OpenWeatherMap: Utiliza la plataforma OpenWeatherMap para garantizar la calidad y precisión de los datos meteorológicos proporcionados. Esta integración ofrece una amplia gama de información, desde la temperatura actual hasta pronósticos a futuro.
 
 ## Requisitos Previos
 
@@ -10,48 +16,145 @@ Este proyecto implementa una API de datos meteorologicos que utiliza [OpenWeathe
 
 - [Docker](https://www.docker.com/products/docker-desktop/)
 - [Java Development(JDK)](https://www.oracle.com/ar/java/technologies/downloads/)
-- [PostgreSQL](https://www.postgresql.org/download/)
+- [Postman](https://www.postman.com/downloads/)
 
-## Configuración
+## Endpoints Disponibles
 
-### Configuración de la Base de Datos
+#### La aplicacion ofrece los siguientes endpoints para la gestion de usuario , autenticacion y peticiones a la API de Weather
 
-1. Configura la base de datos en el archivo `application.properties`.
+## Registro de Usuario (POST)
 
-## Overview
+### Ruta: `/api/auth/signup`
 
-[Provide a brief overview of your project, including its purpose and main features.]
+**Ejemplo de Cuerpo de Solicitud:**
 
-## Features
+```json
+{
+  "email": "tuEmail@Example.com",
+  "password": "tuContraseña",
+  "name": "TuNombre",
+  "lastName": "TuApellido"
+};
+```
 
-[List key features and functionalities of your project.]
+## Autenticacion de Usuarios(POST)
 
-## Getting Started
+### Ruta:`/api/auth/signin`
 
-### Prerequisites
+**Ejemplo de Cuerpo de Solicitud:**
 
-[Specify any prerequisites or system requirements needed to run your project.]
+```json
+{
+  "email": "tuEmail@Example.com",
+  "password": "tuContraseña",
+};
+```
 
-### Installation
+**Respuesta Exitosa:**
 
-[Provide step-by-step instructions on how to install your project.]
+```json
+{
+  "token": "TuTokenDeAcceso",
+  "expiresIn": "xxxx"
+};
+```
 
-### Configuration
+## Obtener Informacion Meteorológica Actual (GET)
 
-[Explain any configuration steps or environment variables that need to be set up.]
+### Ruta: `/api/weather/current`
 
-## Usage
+### Parametro de consulta:
 
-[Provide examples or instructions on how to use your project.]
+- `cityName`: Nombre de la ciudad para la cual se desea obtener la informacion meteorológica.
 
-## API Documentation
+### Respuesta Exitosa:
 
-[If applicable, include information on how to access and use any APIs in your project.]
+```json
+"name": "Uruguay",
+    "main": {
+        "temp": 288.82,
+        "humidity": 64
+    },
+    "wind": {
+        "speed": 1.43
+    },
+    "weather": [
+        {
+            "description": "few clouds"
+        }
+    ]
+```
 
-## Contributing
+## Obtener Pronostico del Tiempo de 5 días para una Ciudad Designada(GET)
 
-[Explain how others can contribute to your project. Include guidelines for submitting issues or pull requests.]
+### Ruta: `/api/weather/forecast`
 
-## License
+### Parametro de consulta:
 
-[Specify the license under which your project is distributed. For example, MIT License.]
+- `cityName`: Nombre de la ciudad para la cual se desea obtener el pronóstico del tiempo.
+
+### Respuesta Exitosa:
+
+```json
+  "main": {
+                "temp": 282.58,
+                "feelsLike": 0.0,
+                "pressure": 1008,
+                "humidity": 90,
+                "temp_min": 282.58,
+                "temp_max": 282.6,
+                "sea_level": 1008,
+                },
+                //  ...
+                {"dt_txt": "2023-11-20 03:00:00",
+                }
+```
+
+## Acceder a datos de contaminación del aire actual para una ciudad seleccionada (GET)
+
+### Ruta: `/api/weather/air-pollution`
+
+### Parametro de consulta:
+
+- `Longitud y Latitud`: Longitud y Latitud de la ciudad para la cual se desea obtener la informacion actual de la contaminacion del aire.
+
+### Respuesta Exitosa:
+
+```json
+"list": [
+        {
+            "main": {
+                "aqi": 1
+            },
+            "components": {
+                "co": 303.75,
+                "no": 0.01,
+                "no2": 15.08,
+                "o3": 53.64,
+                "so2": 1.42,
+                "pm2_5": 1.87,
+                "pm10": 3.38,
+                "nh3": 0.93
+            }
+        }
+    ]
+```
+
+## Pasos para Levantar el Proyecto
+
+**Sigue estos pasos para levantar la aplicacion Sprint Boot y ejecutarla:**
+
+#### Correr la aplicaciocion manualmente:
+
+```bash
+# Para construir y empaquetar la aplicación (omitir pruebas)
+./mvnw clean package -DskipTests
+
+# Para construir los contenedores de Docker
+docker-compose build
+
+# Para iniciar la aplicación y los servicios relacionados en Docker
+docker-compose up
+```
+
+**Asegúrate de estar en el directorio raíz de tu proyecto Spring Boot al ejecutar estos comandos. Con estos comandos, podrás automatizar fácilmente la construcción y ejecución de tu aplicación Dockerizada.**
